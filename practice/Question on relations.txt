@@ -1,0 +1,211 @@
+What is normalization?
+What is cardinality and types?
+what is fact and dimenstion tables?
+What is start schema
+what is snow flex schema.
+What is 1NF, 2NF, 3NF ?
+
+
+1️⃣ What is Normalization?
+
+Normalization is a database design technique used to organize data in a database to:
+
+Reduce data redundancy (duplicate data)
+
+Improve data integrity
+
+Avoid update, delete, insert anomalies
+
+👉 It divides large tables into smaller related tables.
+
+Example (Without Normalization)
+StudentID	StudentName	Course	CourseFee
+1	Sneha	SQL	5000
+1	Sneha	Excel	3000
+
+Here, student data is repeated.
+
+After Normalization
+
+Student Table
+
+StudentID	StudentName
+1	Sneha
+
+Course Table
+
+CourseID	CourseName	Fee
+
+Enrollment Table
+| StudentID | CourseID |
+
+Now data is clean and structured.
+
+2️⃣ What is Cardinality and its Types?
+
+Cardinality defines the relationship between two tables (how many records relate to each other).
+
+Types of Cardinality:
+🔹 1. One-to-One (1:1)
+
+One record in Table A relates to one record in Table B.
+
+Example:
+
+One Person → One Passport
+
+🔹 2. One-to-Many (1:M)
+
+One record in Table A relates to many records in Table B.
+
+Example:
+
+One Customer → Many Orders
+
+🔹 3. Many-to-One (M:1)
+
+Many records in Table A relate to one record in Table B.
+
+Example:
+
+Many Employees → One Department
+
+🔹 4. Many-to-Many (M:M)
+
+Many records in Table A relate to many records in Table B.
+
+Example:
+
+Students ↔ Courses
+
+👉 This requires a junction table.
+
+3️⃣ What are Fact and Dimension Tables?
+
+These are used in Data Warehousing.
+
+🔷 Fact Table
+
+A Fact table contains:
+
+Numeric values (measurable data)
+
+Foreign keys from dimension tables
+
+Example:
+
+OrderID	CustomerID	ProductID	Quantity	SalesAmount
+
+✔ Stores numbers
+✔ Used for calculations
+
+🔷 Dimension Table
+
+A Dimension table contains descriptive information.
+
+Example:
+
+| CustomerID | CustomerName | City | Gender |
+
+✔ Contains textual details
+✔ Used for filtering & grouping
+
+4️⃣ What is Star Schema?
+4
+
+Star Schema is a data warehouse design where:
+
+One central Fact table
+
+Multiple surrounding Dimension tables
+
+Structure looks like a ⭐ star
+
+Features:
+
+✔ Simple structure
+✔ Fast query performance
+✔ Easy to understand
+✔ Best for BI tools like Power BI
+
+5️⃣ What is Snowflake Schema?
+4
+
+Snowflake Schema is an extension of star schema where:
+
+Dimension tables are further normalized
+
+Structure looks like ❄ snowflake
+
+Features:
+
+✔ Reduces redundancy
+✔ More complex joins
+✔ Saves storage
+✔ Slower than star schema
+
+6️⃣ What is 1NF, 2NF, 3NF?
+
+These are Normal Forms.
+
+🔹 1NF (First Normal Form)
+
+Rules:
+
+No repeating columns
+
+No multiple values in one cell
+
+Each column contains atomic values
+
+❌ Wrong:
+
+Student	Courses
+Sneha	SQL, Excel
+
+✔ Correct:
+
+Student	Course
+Sneha	SQL
+Sneha	Excel
+🔹 2NF (Second Normal Form)
+
+Rules:
+
+Must be in 1NF
+
+No partial dependency
+
+Non-key column must depend on entire primary key
+
+👉 Happens in composite key situations.
+
+🔹 3NF (Third Normal Form)
+
+Rules:
+
+Must be in 2NF
+
+No transitive dependency
+
+Non-key columns must depend only on primary key
+
+❌ Wrong:
+| EmpID | EmpName | DeptID | DeptName |
+
+DeptName depends on DeptID (not EmpID)
+
+✔ Correct:
+Separate Department table
+
+🔥 Quick Interview Summary
+Topic	One-Line Answer
+Normalization	Reduces redundancy and improves integrity
+Cardinality	Defines table relationships
+Fact Table	Stores measurable numeric data
+Dimension Table	Stores descriptive attributes
+Star Schema	Central fact + surrounding dimensions
+Snowflake Schema	Normalized star schema
+1NF	Atomic values
+2NF	No partial dependency
+3NF	No transitive dependency
